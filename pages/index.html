@@ -3,9 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO & Social Sharing (Open Graph) -->
     <title>DeepReader - 개역한글 성경의 새로운 깊이</title>
+    <meta name="description" content="경건한 개역한글 문체와 현대적 기술의 만남. 나만의 읽기 달력과 KJV 대조 기능을 만나보세요.">
+    <meta property="og:title" content="DeepReader - 개역한글 성경">
+    <meta property="og:description" content="시대를 초월한 말씀의 깊이 속으로. 당신의 영적 여정을 기록하세요.">
+    <meta property="og:image" content="screenshot_3.png">
+    <meta property="og:type" content="website">
+
     <!-- Premium Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;700&family=Noto+Sans+KR:wght@100;300;400;700;900&display=swap" rel="stylesheet">
+    
     <style>
         :root {
             --paper-bg: #FAF9F6;
@@ -13,7 +22,6 @@
             --system-blue: #345A7D;
             --gold-accent: #D4AF37;
             --secondary-text: #86868B;
-            --card-bg: rgba(255, 255, 255, 0.8);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,97 +37,88 @@
 
         /* Hero Section */
         .hero {
-            height: 90vh;
+            padding: 80px 0 40px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            padding: 0 20px;
             background: radial-gradient(circle at center, #ffffff 0%, var(--paper-bg) 100%);
         }
 
         .logo-circle {
-            width: 80px;
-            height: 80px;
+            width: 70px; height: 70px;
             background-color: var(--system-blue);
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 40px;
-            font-weight: 900;
-            font-family: 'Noto Serif KR', serif;
-            margin-bottom: 30px;
-            box-shadow: 0 20px 40px rgba(52, 90, 125, 0.2);
-            animation: fadeInDown 1s ease-out;
+            border-radius: 18px;
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-size: 35px; font-weight: 900;
+            margin-bottom: 25px;
+            box-shadow: 0 15px 30px rgba(52, 90, 125, 0.15);
         }
 
         h1 {
             font-family: 'Noto Serif KR', serif;
-            font-size: clamp(2.5rem, 8vw, 4.5rem);
-            font-weight: 700;
+            font-size: clamp(2rem, 7vw, 3.5rem);
             color: var(--system-blue);
-            margin-bottom: 15px;
-            letter-spacing: -1px;
-            animation: fadeInUp 1s ease-out 0.2s both;
+            margin-bottom: 10px;
         }
 
         .hero p {
-            font-size: clamp(1.1rem, 3vw, 1.5rem);
+            font-size: 1.2rem;
             font-weight: 300;
             color: var(--secondary-text);
             max-width: 600px;
             margin-bottom: 40px;
-            animation: fadeInUp 1s ease-out 0.4s both;
+            padding: 0 20px;
         }
 
-        /* Hero Gallery */
-        .hero-gallery {
+        /* Scrolling Gallery */
+        .gallery-container {
             width: 100%;
-            max-width: 1200px;
-            overflow-x: auto;
-            padding: 20px 0 60px;
-            margin-top: 20px;
-            -webkit-overflow-scrolling: touch;
-            animation: fadeInUp 1.2s ease-out 0.6s both;
+            overflow: hidden;
+            padding: 40px 0;
+            position: relative;
         }
-
-        .hero-gallery::-webkit-scrollbar { display: none; }
 
         .gallery-track {
             display: flex;
-            gap: 25px;
-            padding: 0 40px;
+            gap: 30px;
+            padding: 0 50px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
         }
+        .gallery-track::-webkit-scrollbar { display: none; }
 
-        .gallery-track img {
-            width: 260px;
-            height: auto;
-            border-radius: 30px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            border: 8px solid #1d1d1f;
+        .screenshot-item {
             flex-shrink: 0;
-            transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            text-align: center;
         }
 
-        .gallery-track img:hover {
+        .screenshot-item img {
+            width: 280px;
+            height: auto;
+            border-radius: 35px;
+            border: 8px solid #1d1d1f;
+            box-shadow: 0 30px 60px rgba(0,0,0,0.12);
+            transition: transform 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+
+        .screenshot-item p {
+            margin-top: 20px;
+            font-weight: 600;
+            color: var(--system-blue);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        .screenshot-item:hover img {
             transform: translateY(-15px) scale(1.02);
         }
 
         /* Features */
-        .section-title {
-            text-align: center;
-            padding: 100px 20px 40px;
-            font-family: 'Noto Serif KR', serif;
-            font-size: 2.2rem;
-            color: var(--system-blue);
-        }
-
         .features {
             max-width: 1100px;
-            margin: 0 auto;
+            margin: 60px auto;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
@@ -128,92 +127,44 @@
 
         .feature-card {
             background: white;
-            padding: 50px 40px;
-            border-radius: 30px;
+            padding: 40px;
+            border-radius: 25px;
             box-shadow: 0 10px 30px rgba(0,0,0,0.02);
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
             border: 1px solid rgba(0,0,0,0.03);
-        }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.05);
         }
 
         .feature-card h3 {
             font-family: 'Noto Serif KR', serif;
-            font-size: 1.6rem;
+            color: var(--system-blue);
             margin-bottom: 15px;
-            color: var(--system-blue);
         }
 
-        .feature-card p {
-            color: var(--secondary-text);
-            font-size: 1.05rem;
-            line-height: 1.7;
-        }
-
-        /* CTA */
-        .cta {
-            background-color: var(--system-blue);
-            padding: 120px 20px;
-            text-align: center;
+        /* App Store Badge Style */
+        .cta-section {
+            background: var(--system-blue);
             color: white;
-            margin: 100px 0 0;
-        }
-
-        .cta h2 {
-            font-family: 'Noto Serif KR', serif;
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-        }
-
-        .download-btn {
-            display: inline-block;
-            background: white;
-            color: var(--system-blue);
-            padding: 20px 50px;
-            border-radius: 40px;
-            text-decoration: none;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-top: 20px;
-            transition: all 0.3s;
-        }
-
-        .download-btn:hover {
-            transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        footer {
-            background: white;
-            padding: 60px 20px;
+            padding: 100px 20px;
             text-align: center;
-            font-size: 0.9rem;
-            color: var(--secondary-text);
+            border-radius: 40px;
+            margin: 40px 20px;
         }
 
-        footer a {
-            color: var(--system-blue);
+        .app-store-btn {
+            display: inline-flex;
+            align-items: center;
+            background: black;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 10px;
             text-decoration: none;
-            margin: 0 15px;
+            margin-top: 30px;
+            transition: transform 0.2s;
         }
+        .app-store-btn:hover { transform: scale(1.05); }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        footer { text-align: center; padding: 60px; color: var(--secondary-text); font-size: 0.85rem; }
+        footer a { color: var(--system-blue); text-decoration: none; margin: 0 10px; }
 
-        @media (max-width: 768px) {
-            .features { grid-template-columns: 1fr; }
-            h1 { font-size: 2.5rem; }
-        }
     </style>
 </head>
 <body>
@@ -221,49 +172,66 @@
     <section class="hero">
         <div class="logo-circle">D</div>
         <h1>DeepReader</h1>
-        <p>경건한 개역한글의 문체와 현대적 기술의 만남.<br>당신의 영적 여정을 기록하는 가장 아름다운 방법.</p>
+        <p>시대를 초월한 말씀의 깊이 속으로.<br>개역한글 성경과 함께하는 가장 아름다운 묵상 여정.</p>
         
-        <div class="hero-gallery">
+        <div class="gallery-container">
             <div class="gallery-track">
-                <img src="screenshot_3.png" alt="Main Library">
-                <img src="screenshot_1.png" alt="Chapter Selection">
-                <img src="screenshot_2.png" alt="Verse Reading">
-                <img src="screenshot_4.png" alt="Reading Calendar">
-                <img src="screenshot_5.png" alt="Saved Verses">
+                <div class="screenshot-item">
+                    <img src="screenshot_3.png" alt="Library">
+                    <p>정갈한 성경 목록</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshot_1.png" alt="Chapters">
+                    <p>직관적인 장 선택</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshot_2.png" alt="Reading">
+                    <p>고급스러운 읽기 경험</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshot_4.png" alt="Calendar">
+                    <p>나만의 읽기 기록 달력</p>
+                </div>
+                <div class="screenshot-item">
+                    <img src="screenshot_5.png" alt="Saved">
+                    <p>소중한 말씀 보관함</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <h2 class="section-title">주요 기능</h2>
-    
     <div class="features">
         <div class="feature-card">
-            <h3>개역한글의 울림</h3>
-            <p>가장 고전적이고 경건한 개역한글 버전을 고화질 텍스트로 수록했습니다. 시대를 초월한 말씀의 무게를 느껴보세요.</p>
+            <h3>전통의 개역한글</h3>
+            <p>가장 경건한 문체를 유지하는 개역한글 버전을 최적화된 서체로 수록했습니다.</p>
         </div>
         <div class="feature-card">
-            <h3>나만의 읽기 달력</h3>
-            <p>오늘 내가 읽은 말씀을 달력이 기억합니다. 매일 조금씩 채워지는 영적 성장의 지도를 직접 그려나가세요.</p>
+            <h3>영문 KJV 대조</h3>
+            <p>KJV 영문 성경을 나란히 배치하여 말씀의 깊은 뉘앙스를 입체적으로 발견하세요.</p>
         </div>
         <div class="feature-card">
-            <h3>직관적인 묵상 도구</h3>
-            <p>여러 색상의 형광펜으로 소중한 구절을 강조하고 저장하세요. KJV 영문 대조 기능을 통해 말씀의 깊은 뉘앙스까지 포착합니다.</p>
+            <h3>여정의 기록</h3>
+            <p>달력 기능을 통해 매일의 성경 읽기를 기록하고 영적 성장을 시각적으로 확인하세요.</p>
         </div>
     </div>
 
-    <section class="cta">
-        <h2>말씀의 깊이 속으로</h2>
-        <p>지금 App Store에서 DeepReader를 만나보세요.</p>
-        <a href="#" class="download-btn">App Store에서 다운로드</a>
+    <section class="cta-section">
+        <h2>지금 말씀의 깊이 속으로</h2>
+        <p>DeepReader와 함께 매일 더 풍성한 은혜를 누리세요.</p>
+        <a href="#" class="app-store-btn">
+            <div style="text-align:left; margin-left:10px;">
+                <div style="font-size:10px; font-weight:300;">Download on the</div>
+                <div style="font-size:20px; font-weight:600; line-height:1;">App Store</div>
+            </div>
+        </a>
     </section>
 
     <footer>
         <p>© 2024 DeepReader. All rights reserved.</p>
-        <p style="margin-top: 15px;">
-            <a href="support.html">고객 지원</a>
-            <a href="privacy.html">개인정보 처리방침</a>
+        <p style="margin-top:15px;">
+            <a href="support.html">고객 지원</a> | <a href="privacy.html">개인정보 처리방침</a>
         </p>
-        <p style="margin-top: 10px; opacity: 0.5;">shephexd@gmail.com</p>
+        <p style="margin-top:10px; opacity:0.5;">shephexd@gmail.com</p>
     </footer>
 
 </body>
